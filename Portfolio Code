@@ -1,0 +1,90 @@
+import tkinter as tk
+from tkinter import ttk
+
+# Create main window
+root = tk.Tk()
+root.title("Saurav Tiwary - Stylish Portfolio")
+root.geometry("900x700")
+root.config(bg="#e8f0fe")  # Light blue background
+
+# Fonts
+title_font = ("Arial", 26, "bold")
+heading_font = ("Arial", 18, "bold")
+text_font = ("Arial", 12)
+label_color = "#2c3e50"
+
+# Scrollable canvas setup
+main_frame = tk.Frame(root, bg="#e8f0fe")
+main_frame.pack(fill=tk.BOTH, expand=1)
+
+canvas = tk.Canvas(main_frame, bg="#e8f0fe", highlightthickness=0)
+scrollbar = ttk.Scrollbar(main_frame, orient=tk.VERTICAL, command=canvas.yview)
+scroll_frame = tk.Frame(canvas, bg="#e8f0fe")
+
+scroll_frame.bind(
+    "<Configure>",
+    lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+)
+
+canvas.create_window((0, 0), window=scroll_frame, anchor="nw")
+canvas.configure(yscrollcommand=scrollbar.set)
+
+canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+# Section: Title
+tk.Label(scroll_frame, text="Saurav Tiwary – Portfolio", font=title_font, fg="#1a237e", bg="#e8f0fe").pack(pady=20)
+
+# Section: Personal Info
+tk.Label(scroll_frame, text="🎓 B.Tech (3rd Year)", font=text_font, bg="#e8f0fe", fg=label_color).pack(anchor="w", padx=30)
+tk.Label(scroll_frame, text="💻 Aspiring Data Scientist | Software Developer", font=text_font, bg="#e8f0fe", fg=label_color).pack(anchor="w", padx=30)
+tk.Label(scroll_frame, text="📅 Date of Birth: 04/03/2004", font=text_font, bg="#e8f0fe", fg=label_color).pack(anchor="w", padx=30)
+tk.Label(scroll_frame, text="📧 Email: tiwarysaurav235@gmail.com", font=text_font, bg="#e8f0fe", fg=label_color).pack(anchor="w", padx=30)
+
+# Divider
+tk.Label(scroll_frame, text="─" * 100, fg="#90a4ae", bg="#e8f0fe").pack(pady=10)
+
+# Section: About Me
+tk.Label(scroll_frame, text="About Me", font=heading_font, bg="#e8f0fe", fg="#0d47a1").pack(anchor="w", padx=30, pady=(10, 0))
+tk.Label(scroll_frame,
+         text="I am a results-driven B.Tech student with strong foundations in C++, Data Structures, "
+              "and Machine Learning. I’ve completed 100+ coding problems and built AI projects including "
+              "Plant Disease Detection and an AI Chatbot using IBM Watson. My research has been published "
+              "in an international conference.",
+         wraplength=820, justify="left", font=text_font, bg="#e8f0fe", fg=label_color).pack(anchor="w", padx=30, pady=5)
+
+# Section: Technical Skills
+tk.Label(scroll_frame, text="Technical Skills", font=heading_font, bg="#e8f0fe", fg="#0d47a1").pack(anchor="w", padx=30, pady=(15, 0))
+skills = [
+    "Languages: C++, Python",
+    "ML Tools: scikit-learn, Pandas, IBM Watson, AutoAI",
+    "Concepts: Algorithms, Machine Learning, Cloud Computing"
+]
+for skill in skills:
+    tk.Label(scroll_frame, text=f"• {skill}", font=text_font, bg="#e8f0fe", fg=label_color).pack(anchor="w", padx=50)
+
+# Section: Projects
+tk.Label(scroll_frame, text="Projects", font=heading_font, bg="#e8f0fe", fg="#0d47a1").pack(anchor="w", padx=30, pady=(15, 0))
+projects = [
+    "Plant Disease Detection (ML, Kaggle Data) – Published research paper",
+    "AI Chatbot (IBM Watson + Cloud) – Built & evaluated using AutoAI",
+    "Sudoku Solver (C++) – Backtracking-based logic solver",
+    "K-Map Simplifier – SOP & POS visual tool for digital logic"
+]
+for proj in projects:
+    tk.Label(scroll_frame, text=f"• {proj}", font=text_font, bg="#e8f0fe", fg=label_color).pack(anchor="w", padx=50)
+
+# Section: Internship
+tk.Label(scroll_frame, text="Internship", font=heading_font, bg="#e8f0fe", fg="#0d47a1").pack(anchor="w", padx=30, pady=(15, 0))
+tk.Label(scroll_frame, text="IBM Virtual Internship (4 Weeks)", font=text_font, bg="#e8f0fe", fg=label_color).pack(anchor="w", padx=50)
+tk.Label(scroll_frame, text="Focus: Cloud, AI/ML, Chatbots, Data Analytics, AutoAI", font=text_font, bg="#e8f0fe", fg=label_color).pack(anchor="w", padx=50)
+
+# Section: Career Objective
+tk.Label(scroll_frame, text="Career Objective", font=heading_font, bg="#e8f0fe", fg="#0d47a1").pack(anchor="w", padx=30, pady=(15, 0))
+tk.Label(scroll_frame,
+         text="To contribute to innovative AI and software solutions while continuously enhancing "
+              "my technical and analytical skills.",
+         wraplength=820, justify="left", font=text_font, bg="#e8f0fe", fg=label_color).pack(anchor="w", padx=30, pady=5)
+
+# Start GUI
+root.mainloop()
